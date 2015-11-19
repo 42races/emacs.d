@@ -1,5 +1,9 @@
 ;; require ag search plugin
 (require 'ag)
+
+;; jump to matching symbold forward and backward M-p, M-n
+(global-smartscan-mode 1)
+
 ;; ruby syntax check while coding
 (require 'flymake-ruby)
 (add-hook 'ruby-mode-hook 'flymake-ruby-load)
@@ -27,13 +31,13 @@
 (setq ido-use-faces -1)
 
 ;; Display ido results vertically, rather than horizontally
-(setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
-(defun ido-disable-line-truncation () (set (make-local-variable 'truncate-lines) nil))
-(add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
-(defun ido-define-keys () ;; C-n/p is more intuitive in vertical layout
-  (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
-  (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
-(add-hook 'ido-setup-hook 'ido-define-keys)
+;; (setq ido-decorations (quote ("\n-> " "" "\n   " "\n   ..." "[" "]" " [No match]" " [Matched]" " [Not readable]" " [Too big]" " [Confirm]")))
+;; (defun ido-disable-line-truncation () (set (make-local-variable 'truncate-lines) nil))
+;; (add-hook 'ido-minibuffer-setup-hook 'ido-disable-line-truncation)
+;; (defun ido-define-keys () ;; C-n/p is more intuitive in vertical layout
+;;   (define-key ido-completion-map (kbd "C-n") 'ido-next-match)
+;;   (define-key ido-completion-map (kbd "C-p") 'ido-prev-match))
+;; (add-hook 'ido-setup-hook 'ido-define-keys)
 
 ;; robe mode
 (require 'robe)
@@ -56,3 +60,11 @@
 ;; powerline
 (require 'powerline)
 (powerline-default-theme)
+
+;; load snippets
+(require 'yasnippet)
+(yas-global-mode 1)
+
+
+;; activate slim mode for .slimbars
+(add-to-list 'auto-mode-alist '("\\.slimbars\\'" . slim-mode))
